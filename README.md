@@ -9,9 +9,9 @@ A tutorial pet project for studying and comparing iOS app architectures
 
 ## Progress
 - Core (common target for all architectures)
- - Created✅
- - Adding main functionality⏳
+  - Created✅
+  - Adding main functionality⏳
 
 - MVC
- - Target created✅
- - Working on UX development⏳
+  - Target created✅
+  - Working on UX development⏳
