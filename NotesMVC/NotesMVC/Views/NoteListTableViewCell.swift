@@ -1,7 +1,7 @@
 import UIKit
 import Core
 
-class NotesListTableViewCell: UITableViewCell {
+class NoteListTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var createdDateLabel: UILabel!
     @IBOutlet weak var editedDateLabel: UILabel!

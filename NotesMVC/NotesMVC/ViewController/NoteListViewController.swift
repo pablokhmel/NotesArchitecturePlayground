@@ -1,7 +1,7 @@
 import UIKit
 import Core
 
-class NotesListViewController: UITableViewController {
+class NoteListViewController: UITableViewController {
     
     var notes: [NoteModel] = [] {
         didSet {
@@ -30,7 +30,7 @@ class NotesListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell") as? NotesListTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell") as? NoteListTableViewCell else {
             return UITableViewCell()
         }
         
