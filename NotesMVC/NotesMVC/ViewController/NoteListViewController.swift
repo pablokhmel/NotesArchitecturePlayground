@@ -31,7 +31,7 @@ class NoteListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell") as? NoteListTableViewCell else {
-            return UITableViewCell()
+            fatalError("Failed to dequeue NoteListTableViewCell with identifier NoteCell")
         }
         
         cell.selectionStyle = .none
