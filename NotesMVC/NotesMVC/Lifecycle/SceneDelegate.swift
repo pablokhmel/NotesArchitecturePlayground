@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  NotesMVC
-//
-//  Created by Pavel Khmialeuski1 on 15/01/2026.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
