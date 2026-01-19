@@ -36,11 +36,11 @@ class NoteDetailsViewController: UIViewController {
         guard let noteModel else { return }
         navigationItem.title = noteModel.name
         noteTextLabel.text = noteModel.text
-        let dateFormat = NoteDetailsViewController.dateFormatter
-        createdDateLabel.text = "Created: " + dateFormat.string(from: noteModel.createdDate)
+        let dateFormatter = NoteDetailsViewController.dateFormatter
+        createdDateLabel.text = "Created: " + dateFormatter.string(from: noteModel.createdDate)
         if let editedDate = noteModel.editedDate {
             editedDateLabel.isHidden = false
-            editedDateLabel.text = "Edited: " + dateFormat.string(from: editedDate)
+            editedDateLabel.text = "Edited: " + dateFormatter.string(from: editedDate)
         } else {
             editedDateLabel.isHidden = true
         }
