@@ -76,11 +76,11 @@
             <objects>
                 <viewController storyboardIdentifier="NoteDetailsViewController" id="izy-og-PlM" customClass="NoteDetailsViewController" customModule="NotesMVC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e73-iY-427">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRI-oB-eAz">
-                                <rect key="frame" x="25" y="84" width="343" height="41"/>
+                                <rect key="frame" x="25" y="197" width="343" height="41"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwo-vH-8JV">
                                         <rect key="frame" x="10" y="10" width="323" height="21"/>
@@ -104,13 +104,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSf-dT-2oN">
-                                <rect key="frame" x="25" y="130" width="148.33333333333334" height="21"/>
+                                <rect key="frame" x="25" y="243" width="148.33333333333334" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edited: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTe-h9-8Jq">
-                                <rect key="frame" x="229.66666666666663" y="130" width="138.33333333333337" height="21"/>
+                                <rect key="frame" x="229.66666666666663" y="243" width="138.33333333333337" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
@@ -158,7 +158,6 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="SiG-cB-0Gr" kind="relationship" relationship="rootViewController" id="N15-mm-BdG"/>
-                        <segue destination="izy-og-PlM" kind="show" id="YIR-ew-Uis"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ikd-A2-OoK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -166,9 +165,6 @@
             <point key="canvasLocation" x="245.03816793893128" y="116.19718309859155"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="YIR-ew-Uis"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
