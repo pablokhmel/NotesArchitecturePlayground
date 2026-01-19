@@ -40,4 +40,15 @@ class NoteListViewController: UITableViewController {
 
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowNoteDetail",
+           let detailVC = segue.destination as? NoteDetailsViewController,
+           let cell = sender as? UITableViewCell,
+           let indexPath = tableView.indexPath(for: cell) {
+
+            let model = notes[indexPath.row]
+            detailVC.setModel(model)
+        }
+    }
 }

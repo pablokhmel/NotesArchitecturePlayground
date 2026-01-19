@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,6 +56,7 @@
                                     <outlet property="createdDateLabel" destination="sqm-6u-7Up" id="8gQ-6L-d13"/>
                                     <outlet property="editedDateLabel" destination="Zkq-zh-Ct1" id="MRT-qU-87G"/>
                                     <outlet property="nameLabel" destination="0GW-TL-lkx" id="GmZ-cM-AAE"/>
+                                    <segue destination="izy-og-PlM" kind="show" identifier="ShowNoteDetail" id="tzY-So-TSq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -68,6 +70,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bue-fw-u8P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1171.7557251908397" y="116.19718309859155"/>
+        </scene>
+        <!--Note name-->
+        <scene sceneID="VQg-sB-G0u">
+            <objects>
+                <viewController storyboardIdentifier="NoteDetailsViewController" id="izy-og-PlM" customClass="NoteDetailsViewController" customModule="NotesMVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e73-iY-427">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRI-oB-eAz">
+                                <rect key="frame" x="25" y="197" width="343" height="41"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwo-vH-8JV">
+                                        <rect key="frame" x="10" y="10" width="323" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Dwo-vH-8JV" secondAttribute="trailing" constant="10" id="CO4-s0-AQ9"/>
+                                    <constraint firstItem="Dwo-vH-8JV" firstAttribute="leading" secondItem="PRI-oB-eAz" secondAttribute="leading" constant="10" id="D9Y-Wc-3uu"/>
+                                    <constraint firstItem="Dwo-vH-8JV" firstAttribute="top" secondItem="PRI-oB-eAz" secondAttribute="top" constant="10" id="gnc-Ww-3jC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dwo-vH-8JV" secondAttribute="bottom" constant="10" id="mfI-9H-R8T"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSf-dT-2oN">
+                                <rect key="frame" x="25" y="243" width="148.33333333333334" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edited: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTe-h9-8Jq">
+                                <rect key="frame" x="229.66666666666663" y="243" width="138.33333333333337" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IgY-g7-pdk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nTe-h9-8Jq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lSf-dT-2oN" secondAttribute="trailing" constant="8" symbolic="YES" id="1WF-aZ-jcY"/>
+                            <constraint firstItem="PRI-oB-eAz" firstAttribute="top" secondItem="IgY-g7-pdk" secondAttribute="top" constant="25" id="Bqj-kx-AVe"/>
+                            <constraint firstItem="lSf-dT-2oN" firstAttribute="top" secondItem="PRI-oB-eAz" secondAttribute="bottom" constant="5" id="DSk-dN-UTo"/>
+                            <constraint firstItem="nTe-h9-8Jq" firstAttribute="top" secondItem="PRI-oB-eAz" secondAttribute="bottom" constant="5" id="Ogd-Y0-qHI"/>
+                            <constraint firstItem="lSf-dT-2oN" firstAttribute="leading" secondItem="IgY-g7-pdk" secondAttribute="leading" constant="25" id="U4A-JM-BlG"/>
+                            <constraint firstItem="IgY-g7-pdk" firstAttribute="trailing" secondItem="PRI-oB-eAz" secondAttribute="trailing" constant="25" id="ew6-5t-2kS"/>
+                            <constraint firstItem="PRI-oB-eAz" firstAttribute="leading" secondItem="IgY-g7-pdk" secondAttribute="leading" constant="25" id="fsO-5t-rVK"/>
+                            <constraint firstItem="IgY-g7-pdk" firstAttribute="trailing" secondItem="nTe-h9-8Jq" secondAttribute="trailing" constant="25" id="zhV-pX-6gv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Note name" id="tp3-Nw-ptW">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="DJ3-aj-pIZ">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="izy-og-PlM" id="0vU-4U-Vox"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="createdDateLabel" destination="lSf-dT-2oN" id="0pc-vX-H8A"/>
+                        <outlet property="editedDateLabel" destination="nTe-h9-8Jq" id="6c7-1b-plh"/>
+                        <outlet property="noteTextLabel" destination="Dwo-vH-8JV" id="2WN-S5-jGn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hsB-qg-VBZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2140" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cpe-WV-cS3">
@@ -92,8 +169,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
