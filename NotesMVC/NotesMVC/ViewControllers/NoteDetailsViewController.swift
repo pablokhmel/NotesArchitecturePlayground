@@ -26,6 +26,10 @@ class NoteDetailsViewController: UIViewController {
     
     public func setModel(_ model: NoteModel) {
         self.noteModel = model
+        
+        if isViewLoaded {
+            configure()
+        }
     }
     
     private func configure() {
