@@ -130,11 +130,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Note name" id="tp3-Nw-ptW">
-                        <barButtonItem key="leftBarButtonItem" title="Back" image="chevron.backward" catalog="system" id="ayw-Vs-I7R">
-                            <connections>
-                                <action selector="backButtonPressed:" destination="izy-og-PlM" id="PHY-0y-zLr"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="DJ3-aj-pIZ">
                             <connections>
                                 <action selector="editButtonPressed:" destination="izy-og-PlM" id="0vU-4U-Vox"/>
@@ -175,7 +170,6 @@
         <segue reference="YIR-ew-Uis"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

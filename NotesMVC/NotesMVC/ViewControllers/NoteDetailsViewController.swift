@@ -14,11 +14,8 @@ class NoteDetailsViewController: UIViewController {
     
     private var noteModel: NoteModel?
     
-    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
-    }
-    
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+
     }
     
     override func viewDidLoad() {
