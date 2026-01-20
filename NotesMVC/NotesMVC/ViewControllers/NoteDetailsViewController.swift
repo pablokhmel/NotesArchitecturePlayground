@@ -44,8 +44,8 @@ class NoteDetailsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditNote" {
-            let navigationController = segue.destination as! NoteEditorViewController
-            navigationController.mode = .edit(noteModel!)
+            let editorViewController = segue.destination as! NoteEditorViewController
+            editorViewController.mode = .edit(noteModel!)
         }
     }
 }
