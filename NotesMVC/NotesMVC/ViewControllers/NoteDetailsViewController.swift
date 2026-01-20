@@ -14,10 +14,6 @@ class NoteDetailsViewController: UIViewController {
     
     private var noteModel: NoteModel?
     
-    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
-
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +39,13 @@ class NoteDetailsViewController: UIViewController {
             editedDateLabel.text = "Edited: " + dateFormatter.string(from: editedDate)
         } else {
             editedDateLabel.isHidden = true
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditNote" {
+            let editorViewController = segue.destination as! NoteEditorViewController
+            editorViewController.mode = .edit(noteModel!)
         }
     }
 }

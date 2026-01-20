@@ -82,7 +82,7 @@
         <!--New note-->
         <scene sceneID="P8G-8K-hPJ">
             <objects>
-                <viewController id="aaV-6e-B1V" customClass="AddNoteViewController" customModule="NotesMVC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aaV-6e-B1V" customClass="NoteEditorViewController" customModule="NotesMVC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6ok-Xv-a9W">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -251,7 +251,7 @@
                     <navigationItem key="navigationItem" title="Note name" id="tp3-Nw-ptW">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="DJ3-aj-pIZ">
                             <connections>
-                                <action selector="editButtonPressed:" destination="izy-og-PlM" id="0vU-4U-Vox"/>
+                                <segue destination="aaV-6e-B1V" kind="show" identifier="EditNote" id="u3h-3o-eZy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -284,6 +284,9 @@
             <point key="canvasLocation" x="245.03816793893128" y="116.19718309859155"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="u3h-3o-eZy"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
