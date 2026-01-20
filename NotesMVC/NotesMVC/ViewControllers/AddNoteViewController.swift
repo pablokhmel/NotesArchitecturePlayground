@@ -7,7 +7,7 @@ class AddNoteViewController: UIViewController {
         case nameTooShort(min: Int)
         case noteEmpty
         case noteTooShort(min: Int)
-
+        
         var message: String {
             switch self {
             case .nameEmpty:
@@ -21,28 +21,22 @@ class AddNoteViewController: UIViewController {
             }
         }
     }
-
+    
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
-
+    
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         startActivity { [weak self] in
             guard let self else { return }
             try self.validateTextFields()
             
-            if
-                let name = nameTextField.text,
-                let note = noteTextView.text
-            {
-                let noteModel = NoteModel(
-                    name: name,
-                    text: note,
-                    createdDate: Date()
-                )
-                
-                NoteManager.saveNote(noteModel)
-            }
+            let noteModel = NoteModel(
+                name: self.nameTextField.text!,
+                text: self.noteTextView.text!,
+                createdDate: Date()
+            )
+            NoteManager.saveNote(noteModel)
             
             await MainActor.run {
                 self.navigationController?.popViewController(animated: true)
@@ -54,7 +48,7 @@ class AddNoteViewController: UIViewController {
         try validateName()
         try validateNote()
     }
-
+    
     private func validateName() throws {
         let minLength = 3
         guard let name = trimmed(nameTextField.text), !name.isEmpty else {
@@ -62,12 +56,12 @@ class AddNoteViewController: UIViewController {
         }
         
         nameTextField.text = name
-
+        
         guard name.count >= minLength else {
             throw ValidationError.nameTooShort(min: minLength)
         }
     }
-
+    
     private func validateNote() throws {
         let minLength = 5
         guard let note = trimmed(noteTextView.text), !note.isEmpty else {
@@ -75,12 +69,12 @@ class AddNoteViewController: UIViewController {
         }
         
         noteTextView.text = note
-
+        
         guard note.count >= minLength else {
             throw ValidationError.noteTooShort(min: minLength)
         }
     }
-
+    
     
     private func showErrorAlert(for error: ValidationError) {
         let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
@@ -98,6 +92,10 @@ class AddNoteViewController: UIViewController {
         Task {
             do {
                 try await action()
+                
+                await MainActor.run {
+                    self.loadingView.isHidden = true
+                }
             } catch let validationError as ValidationError {
                 await MainActor.run {
                     loadingView.isHidden = true
@@ -105,10 +103,6 @@ class AddNoteViewController: UIViewController {
                 }
             } catch {
                 print(String(describing: error))
-            }
-            
-            await MainActor.run {
-                self.loadingView.isHidden = true
             }
         }
     }
