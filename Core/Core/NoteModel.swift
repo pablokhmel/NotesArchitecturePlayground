@@ -10,7 +10,7 @@ public struct NoteModel {
         name: String,
         text: String,
         createdDate: Date,
-        editedDate: Date?
+        editedDate: Date? = nil
     ) {
         self.name = name
         self.text = text

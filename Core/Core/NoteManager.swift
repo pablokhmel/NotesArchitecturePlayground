@@ -20,4 +20,8 @@ public class NoteManager {
                 editedDate: Date())
         ]
     }
+    
+    public static func saveNote(_ note: NoteModel) {
+        
+    }
 }
