@@ -24,4 +24,8 @@ public class NoteManager {
     public static func saveNote(_ note: NoteModel) {
         
     }
+    
+    public static func updateNote(_ note: NoteModel) {
+        
+    }
 }

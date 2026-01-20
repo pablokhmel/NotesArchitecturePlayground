@@ -1,10 +1,10 @@
 import Foundation
 
 public struct NoteModel {
-    public let name: String
-    public let text: String
+    public var name: String
+    public var text: String
     public let createdDate: Date
-    public let editedDate: Date?
+    public var editedDate: Date?
 
     public init(
         name: String,

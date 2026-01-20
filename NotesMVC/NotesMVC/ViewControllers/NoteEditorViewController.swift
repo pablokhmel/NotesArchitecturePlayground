@@ -1,7 +1,7 @@
 import UIKit
 import Core
 
-class AddNoteViewController: UIViewController {
+class NoteEditorViewController: UIViewController {
     private enum ValidationError: Error {
         case nameEmpty
         case nameTooShort(min: Int)
@@ -22,25 +22,66 @@ class AddNoteViewController: UIViewController {
         }
     }
     
+    public enum NoteEditorMode {
+        case add
+        case edit(NoteModel)
+    }
+    
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
+    
+    var mode: NoteEditorMode = .add {
+        didSet {
+            if isViewLoaded {
+                configureForMode()
+            }
+        }
+    }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         startActivity { [weak self] in
             guard let self else { return }
             try self.validateTextFields()
             
-            let noteModel = NoteModel(
-                name: self.nameTextField.text!,
-                text: self.noteTextView.text!,
-                createdDate: Date()
-            )
-            NoteManager.saveNote(noteModel)
+            switch mode {
+            case .add:
+                let noteModel = NoteModel(
+                    name: self.nameTextField.text!,
+                    text: self.noteTextView.text!,
+                    createdDate: Date()
+                )
+
+                NoteManager.saveNote(noteModel)
+            case .edit(var noteModel):
+                noteModel.name = self.nameTextField.text!
+                noteModel.text = self.noteTextView.text!
+                
+                NoteManager.updateNote(noteModel)
+            }
             
             await MainActor.run {
                 self.navigationController?.popViewController(animated: true)
             }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureForMode()
+    }
+
+    private func configureForMode() {
+        switch mode {
+        case .add:
+            navigationItem.title = "New Note"
+            nameTextField.text = ""
+            noteTextView.text = ""
+        case .edit(let noteModel):
+            navigationItem.title = noteModel.name
+            nameTextField.text = noteModel.name
+            noteTextView.text = noteModel.text
         }
     }
     
