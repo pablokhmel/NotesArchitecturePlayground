@@ -44,6 +44,8 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Zkq-zh-Ct1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sqm-6u-7Up" secondAttribute="trailing" constant="8" symbolic="YES" id="5vg-8T-hmb"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0GW-TL-lkx" secondAttribute="trailing" constant="20" symbolic="YES" id="ExX-8M-o1J"/>
                                         <constraint firstItem="sqm-6u-7Up" firstAttribute="leading" secondItem="DkH-qw-NFg" secondAttribute="leading" constant="25" id="OIr-xE-6Bd"/>
                                         <constraint firstAttribute="trailing" secondItem="Zkq-zh-Ct1" secondAttribute="trailing" constant="25" id="Ow9-yM-ebk"/>
                                         <constraint firstItem="0GW-TL-lkx" firstAttribute="leading" secondItem="DkH-qw-NFg" secondAttribute="leading" constant="25" id="bpH-5T-O3R"/>
@@ -65,11 +67,128 @@
                             <outlet property="delegate" destination="SiG-cB-0Gr" id="irM-BI-bQV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Your notes" id="Jtd-kj-yTS"/>
+                    <navigationItem key="navigationItem" title="Your notes" id="Jtd-kj-yTS">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="LS6-gw-xcb">
+                            <connections>
+                                <segue destination="aaV-6e-B1V" kind="show" id="Rb7-K1-NHU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bue-fw-u8P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1171.7557251908397" y="116.19718309859155"/>
+        </scene>
+        <!--New note-->
+        <scene sceneID="P8G-8K-hPJ">
+            <objects>
+                <viewController id="aaV-6e-B1V" customClass="AddNoteViewController" customModule="NotesMVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ok-Xv-a9W">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="veZ-6l-eDz">
+                                <rect key="frame" x="25" y="212.33333333333334" width="343" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1V9-IO-mVN">
+                                <rect key="frame" x="30" y="187" width="84" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7n-pz-Bsk">
+                                <rect key="frame" x="30.000000000000007" y="276.33333333333331" width="70.666666666666686" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oRz-u3-C7J">
+                                <rect key="frame" x="25" y="301.66666666666674" width="343" height="282.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GC-fB-O0X">
+                                <rect key="frame" x="96.666666666666686" y="366" width="200" height="120"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6fX-hM-mnj">
+                                        <rect key="frame" x="59.999999999999986" y="40" width="80.000000000000014" height="40.333333333333343"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nGE-D9-wCB">
+                                                <rect key="frame" x="30" y="0.0" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmT-cV-KN6">
+                                                <rect key="frame" x="2.6666666666666856" y="20" width="74.666666666666671" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="eaa-p7-sQU"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="RHz-3d-r5A"/>
+                                    <constraint firstItem="6fX-hM-mnj" firstAttribute="centerX" secondItem="1GC-fB-O0X" secondAttribute="centerX" id="S1B-lG-fjt"/>
+                                    <constraint firstItem="6fX-hM-mnj" firstAttribute="centerY" secondItem="1GC-fB-O0X" secondAttribute="centerY" id="lbY-Ny-Wlf"/>
+                                    <constraint firstAttribute="height" constant="120" id="zFI-w8-DcJ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Eku-kC-05Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="veZ-6l-eDz" firstAttribute="leading" secondItem="Eku-kC-05Y" secondAttribute="leading" constant="25" id="ATq-dT-ZXo"/>
+                            <constraint firstItem="Eku-kC-05Y" firstAttribute="bottom" secondItem="oRz-u3-C7J" secondAttribute="bottom" constant="200" id="AUi-pN-OrA"/>
+                            <constraint firstItem="1V9-IO-mVN" firstAttribute="top" secondItem="Eku-kC-05Y" secondAttribute="top" constant="15" id="HhT-Bz-glq"/>
+                            <constraint firstItem="oRz-u3-C7J" firstAttribute="top" secondItem="N7n-pz-Bsk" secondAttribute="bottom" constant="5" id="Idy-Eu-yqa"/>
+                            <constraint firstItem="N7n-pz-Bsk" firstAttribute="leading" secondItem="oRz-u3-C7J" secondAttribute="leading" constant="5" id="JUE-EB-rAC"/>
+                            <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" secondItem="oRz-u3-C7J" secondAttribute="trailing" constant="25" id="Mok-Cd-cvf"/>
+                            <constraint firstItem="1V9-IO-mVN" firstAttribute="leading" secondItem="veZ-6l-eDz" secondAttribute="leading" constant="5" id="ORI-3S-vgo"/>
+                            <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N7n-pz-Bsk" secondAttribute="trailing" symbolic="YES" id="SUV-l6-qj5"/>
+                            <constraint firstItem="1GC-fB-O0X" firstAttribute="centerX" secondItem="6ok-Xv-a9W" secondAttribute="centerX" id="Uxx-zF-pV6"/>
+                            <constraint firstItem="oRz-u3-C7J" firstAttribute="leading" secondItem="Eku-kC-05Y" secondAttribute="leading" constant="25" id="XH8-7W-HgX"/>
+                            <constraint firstItem="1GC-fB-O0X" firstAttribute="centerY" secondItem="6ok-Xv-a9W" secondAttribute="centerY" id="Zza-uv-r6z"/>
+                            <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1V9-IO-mVN" secondAttribute="trailing" symbolic="YES" id="cpv-9V-jfR"/>
+                            <constraint firstItem="veZ-6l-eDz" firstAttribute="top" secondItem="1V9-IO-mVN" secondAttribute="bottom" constant="5" id="dag-Uf-bPH"/>
+                            <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" secondItem="veZ-6l-eDz" secondAttribute="trailing" constant="25" id="viB-rY-XwT"/>
+                            <constraint firstItem="N7n-pz-Bsk" firstAttribute="top" secondItem="veZ-6l-eDz" secondAttribute="bottom" constant="30" id="xP5-Km-Xu2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New note" id="0kT-rB-cPn">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="c7m-dY-XIX">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="aaV-6e-B1V" id="2jb-lj-xJw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="loadingView" destination="1GC-fB-O0X" id="WaW-c2-e3b"/>
+                        <outlet property="nameTextField" destination="veZ-6l-eDz" id="bDa-pm-rgX"/>
+                        <outlet property="noteTextView" destination="oRz-u3-C7J" id="ilu-wB-kiL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7y8-RZ-I9H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2400.7633587786258" y="115.49295774647888"/>
         </scene>
         <!--Note name-->
         <scene sceneID="VQg-sB-G0u">
@@ -144,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsB-qg-VBZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="116"/>
+            <point key="canvasLocation" x="2401" y="-581"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cpe-WV-cS3">
@@ -166,11 +285,17 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
