@@ -9,8 +9,9 @@ class NoteListViewController: UITableViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         LoadingView.startLoading(on: self) { [weak self] in
             self?.notes = await NoteManager.fetchNotes()
         }
@@ -50,6 +51,61 @@ class NoteListViewController: UITableViewController {
 
             let model = notes[indexPath.row]
             detailVC.setModel(model)
+            detailVC.delegate = self
+        }
+        
+        if segue.identifier == "AddNote" {
+            let editorVC = segue.destination as! NoteEditorViewController
+            editorVC.delegate = self
+        }
+    }
+    
+    override func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
+
+        let deleteAction = UIContextualAction(
+            style: .destructive,
+            title: "Delete"
+        ) { [weak self] _, _, completion in
+            self?.deleteNote(at: indexPath)
+            completion(true)
+        }
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+
+    private func deleteNote(at indexPath: IndexPath) {
+        let note = notes[indexPath.row]
+
+        notes.remove(at: indexPath.row)
+
+        Task {
+            await NoteManager.deleteNote(id: note.id)
+        }
+    }
+}
+
+extension NoteListViewController: NoteEditorDelegate {
+    func editedNote(_ note: NoteModel) {
+        guard let indexToReplace = notes
+            .firstIndex(where: { $0.id == note.id }) else {return}
+
+        notes[indexToReplace] = note
+        notes.sort { firstNote, secondNote in
+            let firstDate = firstNote.editedDate ?? firstNote.createdDate
+            let secondDate = secondNote.editedDate ?? secondNote.createdDate
+            return firstDate > secondDate
+        }
+    }
+    
+    func createdNote(_ note: NoteModel) {
+        notes.append(note)
+        notes.sort { firstNote, secondNote in
+            let firstDate = firstNote.editedDate ?? firstNote.createdDate
+            let secondDate = secondNote.editedDate ?? secondNote.createdDate
+            return firstDate > secondDate
         }
     }
 }

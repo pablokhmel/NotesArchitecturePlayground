@@ -9,7 +9,10 @@ A tutorial pet project for studying and comparing iOS app architectures
 
 ## Progress
 - Core (common target for all architectures)
-  - In progress⏳
+  - Under review...⚠️
 
 - MVC
-  - In progress⏳
+  - Under review...⚠️
+  
+- MVVM
+  - In progress...⏳

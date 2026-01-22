@@ -57,11 +57,27 @@ public class NoteManager {
         let notes = await fetchNotes()
         return notes.first(where: { $0.id == id })
     }
+    
+    // MARK: - Delete
+    
+    public static func deleteNote(id: UUID) async {
+        await simulateDelay()
+        
+        var notes = await fetchNotes()
+        notes.removeAll(where: { $0.id == id })
+        saveAll(notes)
+    }
 
     // MARK: - Private
 
     private static func saveAll(_ notes: [NoteModel]) {
-        guard let data = try? encoder.encode(notes) else { return }
+        let sortedNotes = notes.sorted { firstNote, secondNote in
+            let firstDate = firstNote.editedDate ?? firstNote.createdDate
+            let secondDate = secondNote.editedDate ?? secondNote.createdDate
+            return firstDate > secondDate
+        }
+
+        guard let data = try? encoder.encode(sortedNotes) else { return }
         UserDefaults.standard.set(data, forKey: notesKey)
     }
 

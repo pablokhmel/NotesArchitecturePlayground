@@ -2,26 +2,6 @@ import UIKit
 import Core
 
 class NoteEditorViewController: UIViewController {
-    private enum ValidationError: Error {
-        case nameEmpty
-        case nameTooShort(min: Int)
-        case noteEmpty
-        case noteTooShort(min: Int)
-        
-        var message: String {
-            switch self {
-            case .nameEmpty:
-                return "Name cannot be empty"
-            case .nameTooShort(let min):
-                return "Name must be at least \(min) characters"
-            case .noteEmpty:
-                return "Note cannot be empty"
-            case .noteTooShort(let min):
-                return "Note must be at least \(min) characters"
-            }
-        }
-    }
-    
     public enum NoteEditorMode {
         case add
         case edit(NoteModel)
@@ -30,7 +10,7 @@ class NoteEditorViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     
-    weak var delegate: NoteDetailsViewControllerDelegate?
+    weak var delegate: NoteEditorDelegate?
     var mode: NoteEditorMode = .add {
         didSet {
             if isViewLoaded {
@@ -53,12 +33,14 @@ class NoteEditorViewController: UIViewController {
                 )
 
                 await NoteManager.saveNote(noteModel)
+                delegate?.createdNote(noteModel)
             case .edit(var noteModel):
                 noteModel.name = self.nameTextField.text!
                 noteModel.text = self.noteTextView.text!
+                noteModel.editedDate = Date()
                 
                 await NoteManager.updateNote(noteModel)
-                delegate?.didUpdateNote(noteModel)
+                delegate?.editedNote(noteModel)
             }
             
             await MainActor.run {

@@ -33,6 +33,20 @@ final class LoadingView: UIView {
         action: @escaping () async throws -> Void,
         onError: @escaping (Error) -> Void = { _ in }
     ) {
+        func showLoadingView() {
+            UIView.animate(withDuration: 0.1) {
+                loadingView.alpha = 1
+            }
+        }
+        
+        func hideLoadingView() {
+            UIView.animate(withDuration: 0.1, animations: {
+                loadingView.alpha = 0
+            }, completion: { _ in
+                loadingView.removeFromSuperview()
+            })
+        }
+
         let loadingView = LoadingView()
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         loadingView.alpha = 0
@@ -54,23 +68,15 @@ final class LoadingView: UIView {
 
         loadingView.isUserInteractionEnabled = true
 
-        UIView.animate(withDuration: 0.1) {
-            loadingView.alpha = 1
-        }
+        showLoadingView()
 
         Task {
             do {
                 try await action()
+                hideLoadingView()
             } catch {
                 onError(error)
-            }
-
-            await MainActor.run {
-                UIView.animate(withDuration: 0.1, animations: {
-                    loadingView.alpha = 0
-                }, completion: { _ in
-                    loadingView.removeFromSuperview()
-                })
+                hideLoadingView()
             }
         }
     }
