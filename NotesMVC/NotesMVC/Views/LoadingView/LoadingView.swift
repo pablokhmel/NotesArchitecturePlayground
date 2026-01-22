@@ -18,7 +18,13 @@ final class LoadingView: UIView {
         let nib = UINib(nibName: "LoadingView", bundle: .main)
         nib.instantiate(withOwner: self)
         addSubview(contentView)
-        contentView.frame = bounds
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
     }
     
     @MainActor
