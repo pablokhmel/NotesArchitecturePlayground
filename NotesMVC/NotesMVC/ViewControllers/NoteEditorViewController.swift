@@ -58,7 +58,7 @@ class NoteEditorViewController: UIViewController {
                 noteModel.text = self.noteTextView.text!
                 
                 await NoteManager.updateNote(noteModel)
-                delegate?.didUpdatedNote(noteModel)
+                delegate?.didUpdateNote(noteModel)
             }
             
             await MainActor.run {
