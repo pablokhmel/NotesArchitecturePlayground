@@ -10,6 +10,7 @@ class NoteListViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         LoadingView.startLoading(on: self) { [weak self] in
             self?.notes = await NoteManager.fetchNotes()
         }
