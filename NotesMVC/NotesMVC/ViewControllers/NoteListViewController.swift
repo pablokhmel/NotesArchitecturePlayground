@@ -8,11 +8,11 @@ class NoteListViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        notes = NoteManager.fetchNotes()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        LoadingView.startLoading(on: self) { [weak self] in
+            self?.notes = await NoteManager.fetchNotes()
+        }
     }
 
     // MARK: - Table view data source

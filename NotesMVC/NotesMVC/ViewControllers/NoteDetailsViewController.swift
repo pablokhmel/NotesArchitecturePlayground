@@ -20,6 +20,12 @@ class NoteDetailsViewController: UIViewController {
         configure()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configure()
+    }
+    
     public func setModel(_ model: NoteModel) {
         self.noteModel = model
         
@@ -46,6 +52,17 @@ class NoteDetailsViewController: UIViewController {
         if segue.identifier == "EditNote" {
             let editorViewController = segue.destination as! NoteEditorViewController
             editorViewController.mode = .edit(noteModel!)
+            editorViewController.delegate = self
         }
+    }
+}
+
+protocol NoteDetailsViewControllerDelegate: AnyObject {
+    func didUpdatedNote(_ note: NoteModel)
+}
+
+extension NoteDetailsViewController: NoteDetailsViewControllerDelegate {
+    func didUpdatedNote(_ note: NoteModel) {
+        setModel(note)
     }
 }

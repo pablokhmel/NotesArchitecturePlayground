@@ -26,11 +26,11 @@ class NoteEditorViewController: UIViewController {
         case add
         case edit(NoteModel)
     }
-    
-    @IBOutlet weak var loadingView: UIView!
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     
+    weak var delegate: NoteDetailsViewControllerDelegate?
     var mode: NoteEditorMode = .add {
         didSet {
             if isViewLoaded {
@@ -40,7 +40,7 @@ class NoteEditorViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        startActivity { [weak self] in
+        LoadingView.startLoading(on: self) { [weak self] in
             guard let self else { return }
             try self.validateTextFields()
             
@@ -52,17 +52,24 @@ class NoteEditorViewController: UIViewController {
                     createdDate: Date()
                 )
 
-                NoteManager.saveNote(noteModel)
+                await NoteManager.saveNote(noteModel)
             case .edit(var noteModel):
                 noteModel.name = self.nameTextField.text!
                 noteModel.text = self.noteTextView.text!
                 
-                NoteManager.updateNote(noteModel)
+                await NoteManager.updateNote(noteModel)
+                delegate?.didUpdatedNote(noteModel)
             }
             
             await MainActor.run {
                 self.navigationController?.popViewController(animated: true)
             }
+        } onError: { [weak self] error in
+            guard let error = error as? ValidationError else {
+                return
+            }
+            
+            self?.showErrorAlert(for: error)
         }
     }
     
@@ -121,31 +128,6 @@ class NoteEditorViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-    
-    private func startActivity(action: @escaping () async throws -> Void) {
-        self.loadingView.alpha = 0
-        self.loadingView.isHidden = false
-        UIView.animate(withDuration: 0.1) {
-            self.loadingView.alpha = 1
-        }
-        
-        Task {
-            do {
-                try await action()
-                
-                await MainActor.run {
-                    self.loadingView.isHidden = true
-                }
-            } catch let validationError as ValidationError {
-                await MainActor.run {
-                    loadingView.isHidden = true
-                    showErrorAlert(for: validationError)
-                }
-            } catch {
-                print(String(describing: error))
-            }
-        }
     }
     
     private func trimmed(_ text: String?) -> String? {

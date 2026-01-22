@@ -1,6 +1,7 @@
 import Foundation
 
-public struct NoteModel {
+public struct NoteModel: Codable {
+    var id: UUID = UUID()
     public var name: String
     public var text: String
     public let createdDate: Date
