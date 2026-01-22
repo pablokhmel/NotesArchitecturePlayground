@@ -58,11 +58,11 @@ class NoteDetailsViewController: UIViewController {
 }
 
 protocol NoteDetailsViewControllerDelegate: AnyObject {
-    func didUpdatedNote(_ note: NoteModel)
+    func didUpdateNote(_ note: NoteModel)
 }
 
 extension NoteDetailsViewController: NoteDetailsViewControllerDelegate {
-    func didUpdatedNote(_ note: NoteModel) {
+    func didUpdateNote(_ note: NoteModel) {
         setModel(note)
     }
 }
