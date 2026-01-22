@@ -1,6 +1,5 @@
 import Foundation
 
-@MainActor
 public class NoteManager {
 
     private static let notesKey = "saved_notes"
