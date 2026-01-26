@@ -25,14 +25,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqm-6u-7Up">
-                                            <rect key="frame" x="25" y="69" width="148.33333333333334" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                            <rect key="frame" x="25" y="75.666666666666671" width="110" height="14.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edited: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkq-zh-Ct1">
-                                            <rect key="frame" x="232" y="69" width="136" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                            <rect key="frame" x="267" y="75.666666666666671" width="101" height="14.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -70,7 +70,7 @@
                     <navigationItem key="navigationItem" title="Your notes" id="Jtd-kj-yTS">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="LS6-gw-xcb">
                             <connections>
-                                <segue destination="aaV-6e-B1V" kind="show" id="Rb7-K1-NHU"/>
+                                <segue destination="aaV-6e-B1V" kind="show" identifier="AddNote" id="Rb7-K1-NHU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -117,41 +117,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GC-fB-O0X">
-                                <rect key="frame" x="96.666666666666686" y="366" width="200" height="120"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6fX-hM-mnj">
-                                        <rect key="frame" x="59.999999999999986" y="40" width="80.000000000000014" height="40.333333333333343"/>
-                                        <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nGE-D9-wCB">
-                                                <rect key="frame" x="30" y="0.0" width="20" height="20"/>
-                                            </activityIndicatorView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmT-cV-KN6">
-                                                <rect key="frame" x="2.6666666666666856" y="20" width="74.666666666666671" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="eaa-p7-sQU"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="RHz-3d-r5A"/>
-                                    <constraint firstItem="6fX-hM-mnj" firstAttribute="centerX" secondItem="1GC-fB-O0X" secondAttribute="centerX" id="S1B-lG-fjt"/>
-                                    <constraint firstItem="6fX-hM-mnj" firstAttribute="centerY" secondItem="1GC-fB-O0X" secondAttribute="centerY" id="lbY-Ny-Wlf"/>
-                                    <constraint firstAttribute="height" constant="120" id="zFI-w8-DcJ"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Eku-kC-05Y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -164,9 +129,7 @@
                             <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" secondItem="oRz-u3-C7J" secondAttribute="trailing" constant="25" id="Mok-Cd-cvf"/>
                             <constraint firstItem="1V9-IO-mVN" firstAttribute="leading" secondItem="veZ-6l-eDz" secondAttribute="leading" constant="5" id="ORI-3S-vgo"/>
                             <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N7n-pz-Bsk" secondAttribute="trailing" symbolic="YES" id="SUV-l6-qj5"/>
-                            <constraint firstItem="1GC-fB-O0X" firstAttribute="centerX" secondItem="6ok-Xv-a9W" secondAttribute="centerX" id="Uxx-zF-pV6"/>
                             <constraint firstItem="oRz-u3-C7J" firstAttribute="leading" secondItem="Eku-kC-05Y" secondAttribute="leading" constant="25" id="XH8-7W-HgX"/>
-                            <constraint firstItem="1GC-fB-O0X" firstAttribute="centerY" secondItem="6ok-Xv-a9W" secondAttribute="centerY" id="Zza-uv-r6z"/>
                             <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1V9-IO-mVN" secondAttribute="trailing" symbolic="YES" id="cpv-9V-jfR"/>
                             <constraint firstItem="veZ-6l-eDz" firstAttribute="top" secondItem="1V9-IO-mVN" secondAttribute="bottom" constant="5" id="dag-Uf-bPH"/>
                             <constraint firstItem="Eku-kC-05Y" firstAttribute="trailing" secondItem="veZ-6l-eDz" secondAttribute="trailing" constant="25" id="viB-rY-XwT"/>
@@ -181,7 +144,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="loadingView" destination="1GC-fB-O0X" id="WaW-c2-e3b"/>
                         <outlet property="nameTextField" destination="veZ-6l-eDz" id="bDa-pm-rgX"/>
                         <outlet property="noteTextView" destination="oRz-u3-C7J" id="ilu-wB-kiL"/>
                     </connections>
@@ -222,15 +184,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSf-dT-2oN">
-                                <rect key="frame" x="25" y="243" width="148.33333333333334" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created: DD.MM.YY, HH:mm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSf-dT-2oN">
+                                <rect key="frame" x="25" y="243" width="157.33333333333334" height="14.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edited: DD.MM.YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTe-h9-8Jq">
-                                <rect key="frame" x="229.66666666666663" y="243" width="138.33333333333337" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edited: DD.MM.YY, HH:mm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTe-h9-8Jq">
+                                <rect key="frame" x="217.33333333333337" y="243" width="150.66666666666663" height="14.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -285,7 +247,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="u3h-3o-eZy"/>
+        <segue reference="Rb7-K1-NHU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
@@ -296,9 +258,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

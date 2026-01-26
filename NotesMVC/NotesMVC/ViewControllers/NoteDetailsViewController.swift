@@ -6,16 +6,17 @@ class NoteDetailsViewController: UIViewController {
     @IBOutlet weak var createdDateLabel: UILabel!
     @IBOutlet weak var editedDateLabel: UILabel!
     
-    private static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        return formatter
-    }()
-    
     private var noteModel: NoteModel?
+    weak var delegate: NoteEditorDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         configure()
     }
@@ -32,11 +33,11 @@ class NoteDetailsViewController: UIViewController {
         guard let noteModel else { return }
         navigationItem.title = noteModel.name
         noteTextLabel.text = noteModel.text
-        let dateFormatter = NoteDetailsViewController.dateFormatter
-        createdDateLabel.text = "Created: " + dateFormatter.string(from: noteModel.createdDate)
+        let dateFormatter = NoteDateFormatter()
+        createdDateLabel.text = dateFormatter.createdDate(from: noteModel.createdDate)
         if let editedDate = noteModel.editedDate {
             editedDateLabel.isHidden = false
-            editedDateLabel.text = "Edited: " + dateFormatter.string(from: editedDate)
+            editedDateLabel.text = dateFormatter.updatedDate(from: editedDate)
         } else {
             editedDateLabel.isHidden = true
         }
@@ -46,6 +47,14 @@ class NoteDetailsViewController: UIViewController {
         if segue.identifier == "EditNote" {
             let editorViewController = segue.destination as! NoteEditorViewController
             editorViewController.mode = .edit(noteModel!)
+            editorViewController.delegate = self
         }
+    }
+}
+
+extension NoteDetailsViewController: NoteEditorDelegate {
+    func editedNote(_ note: NoteModel) {
+        delegate?.editedNote(note)
+        setModel(note)
     }
 }
