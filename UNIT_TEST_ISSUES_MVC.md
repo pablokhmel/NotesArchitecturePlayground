@@ -454,10 +454,9 @@ Create unit tests for `ValidationError` enum to verify error messages.
 1. **Test Error Messages**
    - Test `.nameEmpty` returns "Name cannot be empty"
    - Test `.nameTooShort(min: 3)` returns "Name must be at least 3 characters"
-   - Test `.nameTooShort(min: 5)` returns "Name must be at least 5 characters"
    - Test `.noteEmpty` returns "Note cannot be empty"
    - Test `.noteTooShort(min: 5)` returns "Note must be at least 5 characters"
-   - Test `.noteTooShort(min: 10)` returns "Note must be at least 10 characters"
+   - Test various min values produce correct message format
 
 2. **Test Error Type**
    - Verify all cases conform to Error protocol
@@ -552,7 +551,7 @@ Create comprehensive documentation for the test suite.
 
 **Priority Breakdown:**
 - High Priority: 5 issues (#1, #2, #3, #8, #9)
-- Medium Priority: 7 issues (#4, #5, #6, #10, #11, #12, #7)
+- Medium Priority: 7 issues (#4, #5, #6, #7, #10, #11, #12)
 - Low Priority: 1 issue (#13)
 
 **Recommended Implementation Order:**
