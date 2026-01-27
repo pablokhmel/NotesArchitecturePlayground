@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import NotesMVC
 
 final class UnitTests: XCTestCase {
 
