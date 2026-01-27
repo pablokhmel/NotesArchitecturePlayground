@@ -11,6 +11,16 @@
 		32D3CC992F191B9100D9752E /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32D3CC972F191B9100D9752E /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3246DD9F2F28F320002111DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32D0F6A12F191A6000C39B73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32D0F6A82F191A6000C39B73;
+			remoteInfo = NotesMVC;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		32D3CC9A2F191B9100D9752E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -26,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3246DD9B2F28F320002111DB /* NotesMvcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotesMvcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D0F6A92F191A6000C39B73 /* NotesMVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesMVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D3CC972F191B9100D9752E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -41,6 +52,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		3246DD9C2F28F320002111DB /* NotesMvcTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NotesMvcTests;
+			sourceTree = "<group>";
+		};
 		32D0F6AB2F191A6000C39B73 /* NotesMVC */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -52,6 +68,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3246DD982F28F320002111DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32D0F6A62F191A6000C39B73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -67,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				32D0F6AB2F191A6000C39B73 /* NotesMVC */,
+				3246DD9C2F28F320002111DB /* NotesMvcTests */,
 				32D3CC962F191B9100D9752E /* Frameworks */,
 				32D0F6AA2F191A6000C39B73 /* Products */,
 			);
@@ -76,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				32D0F6A92F191A6000C39B73 /* NotesMVC.app */,
+				3246DD9B2F28F320002111DB /* NotesMvcTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +116,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3246DD9A2F28F320002111DB /* NotesMvcTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3246DDA32F28F320002111DB /* Build configuration list for PBXNativeTarget "NotesMvcTests" */;
+			buildPhases = (
+				3246DD972F28F320002111DB /* Sources */,
+				3246DD982F28F320002111DB /* Frameworks */,
+				3246DD992F28F320002111DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3246DDA02F28F320002111DB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3246DD9C2F28F320002111DB /* NotesMvcTests */,
+			);
+			name = NotesMvcTests;
+			packageProductDependencies = (
+			);
+			productName = NotesMvcTests;
+			productReference = 3246DD9B2F28F320002111DB /* NotesMvcTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		32D0F6A82F191A6000C39B73 /* NotesMVC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32D0F6BC2F191A6100C39B73 /* Build configuration list for PBXNativeTarget "NotesMVC" */;
@@ -124,6 +172,11 @@
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
+					3246DD9A2F28F320002111DB = {
+						CreatedOnToolsVersion = 26.2;
+						LastSwiftMigration = 2620;
+						TestTargetID = 32D0F6A82F191A6000C39B73;
+					};
 					32D0F6A82F191A6000C39B73 = {
 						CreatedOnToolsVersion = 26.2;
 					};
@@ -144,11 +197,19 @@
 			projectRoot = "";
 			targets = (
 				32D0F6A82F191A6000C39B73 /* NotesMVC */,
+				3246DD9A2F28F320002111DB /* NotesMvcTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3246DD992F28F320002111DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32D0F6A72F191A6000C39B73 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,6 +220,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3246DD972F28F320002111DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32D0F6A52F191A6000C39B73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,7 +236,68 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3246DDA02F28F320002111DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32D0F6A82F191A6000C39B73 /* NotesMVC */;
+			targetProxy = 3246DD9F2F28F320002111DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3246DDA12F28F320002111DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pahmele.notes.NotesMvcTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NotesMVC.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NotesMVC";
+				XROS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Debug;
+		};
+		3246DDA22F28F320002111DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pahmele.notes.NotesMvcTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NotesMVC.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NotesMVC";
+				XROS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Release;
+		};
 		32D0F6BD2F191A6100C39B73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -353,6 +482,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3246DDA32F28F320002111DB /* Build configuration list for PBXNativeTarget "NotesMvcTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3246DDA12F28F320002111DB /* Debug */,
+				3246DDA22F28F320002111DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32D0F6A42F191A6000C39B73 /* Build configuration list for PBXProject "NotesMVC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
