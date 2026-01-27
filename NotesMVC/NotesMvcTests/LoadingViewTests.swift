@@ -8,7 +8,6 @@ final class LoadingViewTests: XCTestCase {
         let window = UIWindow(frame: UIScreen.main.bounds)
         let nav = UINavigationController(rootViewController: vc)
         window.rootViewController = nav
-        // Make the window key & visible so LoadingView can attach to a container
         window.makeKeyAndVisible()
         return vc
     }
@@ -17,15 +16,12 @@ final class LoadingViewTests: XCTestCase {
         let vc = await makeViewControllerInWindow()
         let exp = expectation(description: "action executed")
 
-        // Call startLoading on the main actor because it manipulates the view hierarchy
         await MainActor.run {
             LoadingView.startLoading(on: vc) {
-                // fulfill the expectation from inside the async action
                 exp.fulfill()
             }
         }
 
-        // Wait for the action to be executed
         await fulfillment(of: [exp], timeout: 2.0)
     }
 
