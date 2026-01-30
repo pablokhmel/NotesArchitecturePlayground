@@ -30,7 +30,14 @@ class NoteDetailsViewController: UIViewController {
     }
     
     private func configure() {
-        guard let noteModel else { return }
+        guard let noteModel else {
+            navigationItem.title = nil
+            noteTextLabel.text = nil
+            createdDateLabel.text = nil
+            editedDateLabel.isHidden = true
+            editedDateLabel.text = nil
+            return
+        }
         navigationItem.title = noteModel.name
         noteTextLabel.text = noteModel.text
         let dateFormatter = NoteDateFormatter()
@@ -40,13 +47,15 @@ class NoteDetailsViewController: UIViewController {
             editedDateLabel.text = dateFormatter.updatedDate(from: editedDate)
         } else {
             editedDateLabel.isHidden = true
+            editedDateLabel.text = nil
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditNote" {
+            guard let model = noteModel else { return }
             let editorViewController = segue.destination as! NoteEditorViewController
-            editorViewController.mode = .edit(noteModel!)
+            editorViewController.mode = .edit(model)
             editorViewController.delegate = self
         }
     }

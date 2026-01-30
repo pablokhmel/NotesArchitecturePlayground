@@ -53,7 +53,7 @@ final class NoteDetailsViewControllerTests: XCTestCase {
 
         XCTAssertNil(vc.noteTextLabel.text)
         XCTAssertNil(vc.createdDateLabel.text)
-        _ = vc.editedDateLabel.isHidden
+        XCTAssertTrue(vc.editedDateLabel.isHidden)
     }
 
     func testViewLifecycleConfigureCalledOnViewDidLoadAndViewWillAppearEffectsObserved() {
@@ -93,7 +93,24 @@ final class NoteDetailsViewControllerTests: XCTestCase {
             XCTFail("Editor mode should be .edit")
         }
 
-        XCTAssertTrue(editor.delegate === vc, "Editor delegate should be set to the details VC")
+        XCTAssertTrue(editor.delegate === vc)
+    }
+
+    func testPrepareForSegueWithNilModelDoesNotCrashAndDoesNotSetEditor() {
+        let vc = makeController()
+        let editor = NoteEditorViewController()
+        let segue = UIStoryboardSegue(identifier: "EditNote", source: vc, destination: editor)
+
+        vc.prepare(for: segue, sender: nil)
+
+        switch editor.mode {
+        case .add:
+            break
+        default:
+            XCTFail("Editor mode should remain .add when model is nil")
+        }
+
+        XCTAssertNil(editor.delegate)
     }
 
     func testEditedNotePropagatesToParentDelegateAndUpdatesUI() {
@@ -115,6 +132,45 @@ final class NoteDetailsViewControllerTests: XCTestCase {
         XCTAssertEqual(vc.navigationItem.title, "Edited")
         XCTAssertEqual(vc.noteTextLabel.text, "E")
         XCTAssertFalse(vc.editedDateLabel.isHidden)
+    }
+
+    func testEditedNoteUpdatesUIWhenDelegateIsNil() {
+        let vc = makeController()
+        let initial = NoteModel(name: "Initial2", text: "I2", createdDate: Date(timeIntervalSince1970: 1_600_000_000), editedDate: nil)
+
+        vc.setModel(initial)
+        vc.loadViewIfNeeded()
+        vc.delegate = nil
+
+        let edited = NoteModel(name: "Edited2", text: "E2", createdDate: initial.createdDate, editedDate: Date())
+
+        (vc as NoteEditorDelegate).editedNote(edited)
+
+        XCTAssertEqual(vc.navigationItem.title, "Edited2")
+        XCTAssertEqual(vc.noteTextLabel.text, "E2")
+        XCTAssertFalse(vc.editedDateLabel.isHidden)
+    }
+
+    func testPrepareForSegueWithDifferentIdentifierDoesNothing() {
+        let vc = makeController()
+        let note = NoteModel(name: "OtherSegue", text: "O", createdDate: Date(), editedDate: nil)
+
+        vc.setModel(note)
+        vc.loadViewIfNeeded()
+
+        let editor = NoteEditorViewController()
+        let segue = UIStoryboardSegue(identifier: "ShowOther", source: vc, destination: editor)
+
+        vc.prepare(for: segue, sender: nil)
+
+        switch editor.mode {
+        case .add:
+            break
+        default:
+            XCTFail("Editor mode should remain .add when identifier is not EditNote")
+        }
+
+        XCTAssertNil(editor.delegate)
     }
 }
 
