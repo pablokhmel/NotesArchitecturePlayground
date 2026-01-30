@@ -60,10 +60,20 @@ final class NoteListTableViewCellTests: XCTestCase {
 
         let cell = makeCell()
 
+        RunLoop.main.run(until: Date())
         cell.configure(with: note)
-        
+
         let formatter = NoteDateFormatter()
-        XCTAssertEqual(cell.createdDateLabel.text, formatter.createdDate(from: created))
-        XCTAssertEqual(cell.editedDateLabel.text, formatter.updatedDate(from: edited))
+        let createdText = cell.createdDateLabel.text
+        let editedText = cell.editedDateLabel.text
+
+        XCTAssertEqual(createdText, formatter.createdDate(from: created))
+        XCTAssertEqual(editedText, formatter.updatedDate(from: edited))
+
+        let createdPattern = "^Created: \\d{2}\\.\\d{2}\\.\\d{4}, \\d{2}:\\d{2}$"
+        let updatedPattern = "^Updated: \\d{2}\\.\\d{2}\\.\\d{4}, \\d{2}:\\d{2}$"
+
+        XCTAssertNotNil(createdText?.range(of: createdPattern, options: .regularExpression), "Created text should match pattern 'Created: dd.MM.yyyy, hh:mm' - got: \(createdText ?? "nil")")
+        XCTAssertNotNil(editedText?.range(of: updatedPattern, options: .regularExpression), "Updated text should match pattern 'Updated: dd.MM.yyyy, hh:mm' - got: \(editedText ?? "nil")")
     }
 }
