@@ -12,8 +12,6 @@ final class NoteEditorDelegateTests: XCTestCase {
 
         mock.editedNote(note)
         mock.createdNote(note)
-
-        XCTAssertTrue(true)
     }
 
     func testCanOverrideBothMethods() {
