@@ -1,11 +1,27 @@
 import UIKit
 import Core
 
+public protocol NoteManaging {
+    func saveNote(_ note: NoteModel) async
+    func updateNote(_ note: NoteModel) async
+}
+
+private struct DefaultNoteManager: NoteManaging {
+    func saveNote(_ note: NoteModel) async {
+        await NoteManager.saveNote(note)
+    }
+    func updateNote(_ note: NoteModel) async {
+        await NoteManager.updateNote(note)
+    }
+}
+
 class NoteEditorViewController: UIViewController {
     public enum NoteEditorMode {
         case add
         case edit(NoteModel)
     }
+
+    static var noteManager: NoteManaging = DefaultNoteManager()
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
@@ -32,14 +48,14 @@ class NoteEditorViewController: UIViewController {
                     createdDate: Date()
                 )
 
-                await NoteManager.saveNote(noteModel)
+                await Self.noteManager.saveNote(noteModel)
                 delegate?.createdNote(noteModel)
             case .edit(var noteModel):
                 noteModel.name = self.nameTextField.text!
                 noteModel.text = self.noteTextView.text!
                 noteModel.editedDate = Date()
                 
-                await NoteManager.updateNote(noteModel)
+                await Self.noteManager.updateNote(noteModel)
                 delegate?.editedNote(noteModel)
             }
             
