@@ -8,13 +8,25 @@ class NoteListViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    
+
+    static var fetchNotesHandler: () async -> [NoteModel] = { await NoteManager.fetchNotes() }
+    static var deleteNoteHandler: (UUID) async -> Void = { await NoteManager.deleteNote(id: $0) }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadNotesWithLoadingView()
+    }
+
+    func loadNotesWithLoadingView() {
         LoadingView.startLoading(on: self) { [weak self] in
-            self?.notes = await NoteManager.fetchNotes()
+            await self?.performFetch()
         }
+    }
+
+    @MainActor
+    func performFetch() async {
+        let fetched = await Self.fetchNotesHandler()
+        notes = fetched
     }
 
     // MARK: - Table view data source
@@ -82,7 +94,7 @@ class NoteListViewController: UITableViewController {
         notes.remove(at: indexPath.row)
 
         Task {
-            await NoteManager.deleteNote(id: note.id)
+            await Self.deleteNoteHandler(note.id)
         }
     }
 }
