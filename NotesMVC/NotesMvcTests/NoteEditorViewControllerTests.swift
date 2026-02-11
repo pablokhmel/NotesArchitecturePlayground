@@ -6,11 +6,11 @@ import UIKit
 
 final class NoteEditorViewControllerTests: XCTestCase {
     private static var retainedNav: UINavigationController?
-    private let nameTextField = UITextField()
-    private let noteTextView = UITextView()
 
     private func makeEditorInNav(withPrevious prev: UIViewController = UIViewController()) -> NoteEditorViewController {
         let editor = NoteEditorViewController()
+        let nameTextField = UITextField()
+        let noteTextView = UITextView()
         editor.nameTextField = nameTextField
         editor.noteTextView = noteTextView
 
