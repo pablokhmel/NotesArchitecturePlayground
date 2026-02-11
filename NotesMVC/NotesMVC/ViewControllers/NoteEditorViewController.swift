@@ -1,7 +1,7 @@
 import UIKit
 import Core
 
-protocol NoteManaging {
+public protocol NoteManaging {
     func saveNote(_ note: NoteModel) async
     func updateNote(_ note: NoteModel) async
 }
