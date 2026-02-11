@@ -3,3 +3,9 @@
 DerivedData
 *.xcuserstate
 *.xcuserdata
+
+# Ignore Xcode per-user scheme management files
+**/xcuserdata/*/xcschemes/xcschememanagement.plist
+**/xcuserdata/**/xcschememanagement.plist
+**/xcshareddata/xcschemes/*xcschememanagement.plist
+**/xcschememanagement.plist
