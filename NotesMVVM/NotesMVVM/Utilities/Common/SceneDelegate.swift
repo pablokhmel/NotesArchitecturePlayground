@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var flowCoordinator: NotesFlowCoordinator?
 
     func scene(
         _ scene: UIScene,
@@ -21,8 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
 
-        let rootViewController = ViewController()
-        window.rootViewController = UINavigationController(rootViewController: rootViewController)
+        let rootNavigationController = UINavigationController()
+        window.rootViewController = rootNavigationController
+        flowCoordinator = NotesFlowCoordinator(navigationController: rootNavigationController)
+        flowCoordinator?.start()
         window.makeKeyAndVisible()
 
         self.window = window
