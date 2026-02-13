@@ -1,4 +1,4 @@
-enum LoadingState<T> {
+public enum LoadingState<T> {
     case idle
     case loading
     case loaded(T)
